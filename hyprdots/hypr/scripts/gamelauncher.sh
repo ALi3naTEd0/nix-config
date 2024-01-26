@@ -3,7 +3,7 @@
 # set variables
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
-ThemeSet="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
+ThemeSet="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/Catppuccin-Mocha.conf"
 RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${1}.rasi"
 
 

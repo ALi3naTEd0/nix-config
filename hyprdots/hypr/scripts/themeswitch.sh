@@ -96,7 +96,7 @@ fi
 
 
 # kitty
-ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/theme.conf
+ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/Catppuccin-Mocha.conf
 killall -SIGUSR1 kitty
 
 
@@ -126,7 +126,7 @@ flatpak --user override --env=ICON_THEME="${IconSet}"
 
 
 # hyprland
-ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
+ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/Catppuccin-Mocha.conf
 hyprctl reload
 
 
