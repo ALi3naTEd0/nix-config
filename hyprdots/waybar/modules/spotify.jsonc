@@ -1,5 +1,5 @@
     "custom/spotify": {
-        "exec": "/usr/bin/python3 $HOME/.config/waybar/modules/mediaplayer.py --player spotify",
+        "exec": "python3 $HOME/.config/waybar/modules/mediaplayer.py --player spotify",
         "format": " {}",
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",

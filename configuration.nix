@@ -176,8 +176,8 @@
       })
     plex
     plex-media-player
-    python311Packages.deemix
-    python311Packages.pypresence
+    python3Packages.deemix
+    python3Packages.pypresence
     qbittorrent
     rclone
     rssguard
@@ -215,7 +215,20 @@
     wl-clipboard
     wlogout
     vscode
+    python3
     hyprland
+  ];
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "Mononoki"
+        "CascadiaCode"
+      ];
+    })
+    cantarell-fonts
+    inter
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
