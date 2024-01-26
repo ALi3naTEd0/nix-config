@@ -37,7 +37,7 @@
   services.blueman.enable = true;
 
   # Enable Hyprland
-  programs.hyprland.enable = true;
+  #programs.hyprland.enable = true;
 
   # Experimental Features
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -66,8 +66,8 @@
   #services.xserver.desktopManager.gnome.enable = true;
 
   # Enable KDE Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable XFCE Desktop Environment.
   #services.xserver.desktopManager.xfce.enable = true;
@@ -203,6 +203,8 @@
 
     # Hprdots
     pkgs.dunst
+    pkgs.glib
+    pkgs.jq
     pkgs.kitty
     pkgs.mangohud
     pkgs.neofetch
@@ -211,6 +213,7 @@
     pkgs.swaylock
     pkgs.swww
     pkgs.waybar
+    pkgs.wl-clipboard
     pkgs.wlogout
     pkgs.vscode
   ];
