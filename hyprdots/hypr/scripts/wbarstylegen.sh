@@ -9,13 +9,13 @@ waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
-src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
+src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/Catppuccin-Mocha.conf"
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
-    ln -fs $waybar_dir/themes/Wall-Dcol.css $waybar_dir/themes/theme.css
+    ln -fs $waybar_dir/themes/Wall-Dcol.css $waybar_dir/themes/Catppuccin-Mocha.css
     reload_flag=1
-elif [ $(readlink $waybar_dir/themes/theme.css) != "$waybar_dir/themes/${gtkTheme}.css" ] ; then
-    ln -fs $waybar_dir/themes/${gtkTheme}.css $waybar_dir/themes/theme.css
+elif [ $(readlink $waybar_dir/themes/Catppuccin-Mocha.css) != "$waybar_dir/themes/${gtkTheme}.css" ] ; then
+    ln -fs $waybar_dir/themes/${gtkTheme}.css $waybar_dir/themes/Catppuccin-Mocha.css
     reload_flag=1
 fi
 

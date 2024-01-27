@@ -6,11 +6,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   # Bootloader.
   boot.loader = {
     efi = {
@@ -30,14 +25,14 @@
 
   # Enable Bluetooth
   hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
+    enable = true;
+    powerOnBoot = true;
+  };
 
   services.blueman.enable = true;
 
   # Enable Hyprland
-  #programs.hyprland.enable = true;
+  programs.hyprland.enable = true;
 
   # Experimental Features
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -50,7 +45,7 @@
   networking.networkmanager.enable = true;
 
   # Electron
-  nixpkgs.config.permittedInsecurePackages = [ "electron-24.8.6" ];
+  nixpkgs.config.permittedInsecurePackages = ["electron-24.8.6"];
 
   # Set your time zone.
   time.timeZone = "America/Merida";
@@ -59,15 +54,15 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
 
   # Enable KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable XFCE Desktop Environment.
   #services.xserver.desktopManager.xfce.enable = true;
@@ -144,92 +139,105 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
-    pkgs.anytype
-    pkgs.brave
-    pkgs.discord
-    pkgs.element-desktop
-    pkgs.enpass
-    pkgs.firefox
-    pkgs.flameshot
-    pkgs.fsearch
-    pkgs.gh
-    pkgs.gnome.gnome-disk-utility
-    pkgs.htop
-    pkgs.hypnotix
-    pkgs.jetbrains.idea-community
-    pkgs.keepass
-    pkgs.kid3
-    pkgs.libsForQt5.filelight
-    pkgs.localsend
-    #pkgs.logseq
-    pkgs.mediainfo
-    pkgs.mediainfo-gui
-    pkgs.mkvtoolnix
-    pkgs.nicotine-plus
-    pkgs.ntfs3g
-    #pkgs.obsidian
-(assert (lib.assertMsg (obsidian.version == "1.4.16") "obsidian: has wayland crash been fixed?");
-            obsidian.override {
-              electron = electron_24.overrideAttrs (_: {
-                preFixup = "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-                meta.knownVulnerabilities = []; # NixOS/nixpkgs#273611
-              });
-            })
-    pkgs.plex
-    pkgs.plex-media-player
-    pkgs.python311Packages.deemix
-    pkgs.python311Packages.pypresence
-    pkgs.qbittorrent
-    pkgs.rclone
-    pkgs.rssguard
-    pkgs.rsync
-    pkgs.soulseekqt
-    pkgs.subtitleedit
-    pkgs.syncthing
-    pkgs.tauon
-    pkgs.telegram-desktop
-    pkgs.thunderbird
-    pkgs.uget
+    anytype
+    brave
+    discord
+    element-desktop
+    enpass
+    firefox
+    flameshot
+    fsearch
+    gh
+    gnome.gnome-disk-utility
+    htop
+    hypnotix
+    jetbrains.idea-community
+    keepass
+    kid3
+    libsForQt5.filelight
+    localsend
+    #logseq
+    mediainfo
+    mediainfo-gui
+    mkvtoolnix
+    nicotine-plus
+    ntfs3g
+    (assert (lib.assertMsg (obsidian.version == "1.4.16") "obsidian: has wayland crash been fixed?");
+      obsidian.override {
+        electron = electron_24.overrideAttrs (_: {
+          preFixup = "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+          meta.knownVulnerabilities = []; # NixOS/nixpkgs#273611
+        });
+      })
+    plex
+    plex-media-player
+    python3Packages.deemix
+    python3Packages.pypresence
+    qbittorrent
+    rclone
+    rssguard
+    rsync
+    soulseekqt
+    subtitleedit
+    syncthing
+    tauon
+    telegram-desktop
+    thunderbird
+    uget
 
     # KVM/QEMU
-    pkgs.bridge-utils
-    pkgs.dnsmasq
-    pkgs.ebtables
-    pkgs.libguestfs
-    pkgs.netcat-openbsd
-    pkgs.qemu_full
-    pkgs.vde2
-    pkgs.virt-manager
+    bridge-utils
+    dnsmasq
+    ebtables
+    libguestfs
+    netcat-openbsd
+    qemu_full
+    vde2
+    virt-manager
 
-    # Hprdots
-    pkgs.dunst
-    pkgs.glib
-    pkgs.jq
-    pkgs.kitty
-    pkgs.mangohud
-    pkgs.neofetch
-    pkgs.nwg-look
-    pkgs.rofi
-    pkgs.swaylock
-    pkgs.swww
-    pkgs.waybar
-    pkgs.wl-clipboard
-    pkgs.wlogout
-    pkgs.vscode
+    # Hyprdots
+    dunst
+    glib
+    jq
+    kitty
+    mangohud
+    neofetch
+    nwg-look
+    rofi
+    swaylock
+    swww
+    waybar
+    wl-clipboard
+    wlogout
+    vscode
+    python3
+    hyprland
+  ];
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "Mononoki"
+        "CascadiaCode"
+      ];
+    })
+    cantarell-fonts
+    inter
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
