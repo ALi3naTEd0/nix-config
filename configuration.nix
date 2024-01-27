@@ -32,7 +32,7 @@
   services.blueman.enable = true;
 
   # Enable Hyprland
-  programs.hyprland.enable = true;
+  #programs.hyprland.enable = true;
 
   # Experimental Features
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -54,15 +54,15 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = false;
+  services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
 
   # Enable KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable XFCE Desktop Environment.
   #services.xserver.desktopManager.xfce.enable = true;
@@ -139,51 +139,54 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
-    anytype
-    brave
-    discord
-    element-desktop
-    enpass
-    firefox
-    flameshot
-    fsearch
-    gh
-    gnome.gnome-disk-utility
-    htop
-    hypnotix
-    jetbrains.idea-community
-    keepass
-    kid3
-    libsForQt5.filelight
-    localsend
-    #logseq
-    mediainfo
-    mediainfo-gui
-    mkvtoolnix
-    nicotine-plus
-    ntfs3g
-    (assert (lib.assertMsg (obsidian.version == "1.4.16") "obsidian: has wayland crash been fixed?");
-      obsidian.override {
-        electron = electron_24.overrideAttrs (_: {
-          preFixup = "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-          meta.knownVulnerabilities = []; # NixOS/nixpkgs#273611
-        });
-      })
-    plex
-    plex-media-player
-    python3Packages.deemix
-    python3Packages.pypresence
-    qbittorrent
-    rclone
-    rssguard
-    rsync
-    soulseekqt
-    subtitleedit
-    syncthing
-    tauon
-    telegram-desktop
-    thunderbird
-    uget
+   anytype
+   brave
+   discord
+   element-desktop
+   enpass
+   firefox
+   flameshot
+   fsearch
+   gh
+   gnome.gnome-disk-utility
+   htop
+   hypnotix
+   jetbrains.idea-community
+   keepass
+   kid3
+   libsForQt5.filelight
+   localsend
+  #logseq
+   mediainfo
+   mediainfo-gui
+   neofetch
+   mkvtoolnix
+   nicotine-plus
+   ntfs3g
+   (assert (lib.assertMsg (obsidian.version == "1.4.16") "obsidian: has wayland crash been fixed?");
+     obsidian.override {
+       electron = electron_24.overrideAttrs (_: {
+         preFixup = "patchelf --add-needed ${libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+         meta.knownVulnerabilities = []; # NixOS/nixpkgs#273611
+       });
+     })
+   plex
+   plex-media-player
+   python3
+   python3Packages.deemix
+   python3Packages.pypresence
+   qbittorrent
+   rclone
+   rssguard
+   rsync
+   soulseekqt
+   subtitleedit
+   syncthing
+   tauon
+   telegram-desktop
+   thunderbird
+   uget
+   vscode
 
     # KVM/QEMU
     bridge-utils
@@ -196,48 +199,46 @@
     virt-manager
 
     # Hyprdots
-    dunst
-    glib
-    jq
-    kitty
-    mangohud
-    neofetch
-    nwg-look
-    rofi
-    swaylock
-    swww
-    waybar
-    wl-clipboard
-    wlogout
-    vscode
-    python3
-    hyprland
+    #dunst
+    #glib
+    #jq
+    #kitty
+    #mangohud
+    #nwg-look
+    #rofi
+    #swaylock
+    #swww
+    #waybar
+    #wl-clipboard
+    #wlogout
+    #python3
+    #hyprland
   ];
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "Mononoki"
-        "CascadiaCode"
-      ];
-    })
-    cantarell-fonts
-    inter
-  ];
+  #fonts.packages = with pkgs; [
+  #  (nerdfonts.override {
+  #    fonts = [
+  #      "JetBrainsMono"
+  #      "Mononoki"
+  #      "CascadiaCode"
+  #    ];
+  #  })
+  #  cantarell-fonts
+  #  inter
+  #];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  #programs.gnupg.agent = {
+  #  enable = true;
+  #  enableSSHSupport = true;
+  #};
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  #services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
